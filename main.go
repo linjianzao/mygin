@@ -63,9 +63,13 @@ func main() {
 	// r.Run(":8080")
 
 	router := gin.Default()
-	router.GET("/ping", func(c *gin.Context){
-		c.String(http.StatusOK, "pong")
-	})
+	v1 := router.Group("/v1")
+	{
+		v1.GET("/ping", func(c *gin.Context){
+			c.String(http.StatusOK, "pong")
+		})
+	}
+	
 
 	router.Run(":8080")
 }
